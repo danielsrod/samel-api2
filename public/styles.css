@@ -1,23 +1,52 @@
 body {
-    background-color: grey;
-
+  background-color: grey;
 }
 
 #app {
-    background-color: white;
-    width: 500px;
-    margin: auto;
-    text-align: center;
-    border-radius: 12px;
-    padding: 3px;
-    box-shadow: 1px, 1px rgb(92, 92, 92);
-
+  font-family: sans-serif, montserrat;
+  background-color: white;
+  width: 500px;
+  margin: auto;
+  text-align: center;
+  border-radius: 12px;
+  padding: 3px;
+  box-shadow: 1px, 1px rgb(92, 92, 92);
 }
 
 input {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 #input_button {
-    margin-top: 20px;
+  margin-top: 20px;
+}
+
+#sendEvent {
+  margin: auto;
+  background-color: rgb(148, 148, 148);
+  width: 100px;
+  height: 40px;
+  border-radius: 13px;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.enviar {
+  text-decoration: none;
+}
+
+h1.enviar {
+  padding: 5px;
+  color: white;
+}
+
+#input_file {
+  margin-left: 80px;
+  text-align: center;
+  align-items: center;
+}
+
+#input_inv {
+  display: none;
 }
