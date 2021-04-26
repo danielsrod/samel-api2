@@ -13,6 +13,20 @@
 <body>
     <div id="app">
         <h1>Samel API</h1>
+        <form action="/cadastrarCliente" method="POST">
+            <label for="input_nome">Nome: </label>
+            <input type="text" name="input_nome" id="input_nome"><br>
+            <label for="input_nome">Telefone: </label>
+            <input type="text" name="input_telefone" id="input_telefone"><br>
+            <label for="input_nome">CPF: </label>
+            <input type="text" name="input_cpf" id="input_cpf"><br>
+            <label for="input_nome">E-Mail: </label>
+            <input type="text" name="input_email" id="input_email"><br>
+            <label>Insira sua foto aqui: </label>
+            <input type="file" name="input_file" id="input_file" onchange="converterParaBase64()"><br>
+            <button type="submit" onclick="enviar()">CADASTRAR</button>
+        </form>
+        <div id="idImageHolder"></div>
     </div>
 </body>
 

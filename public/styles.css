@@ -1,0 +1,23 @@
+body {
+    background-color: grey;
+
+}
+
+#app {
+    background-color: white;
+    width: 500px;
+    margin: auto;
+    text-align: center;
+    border-radius: 12px;
+    padding: 3px;
+    box-shadow: 1px, 1px rgb(92, 92, 92);
+
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+#input_button {
+    margin-top: 20px;
+}
