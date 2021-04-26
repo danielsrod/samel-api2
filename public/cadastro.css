@@ -1,5 +1,5 @@
 body {
-  background-color: grey;
+  background-color: rgb(177, 177, 177);
 }
 
 #app {
@@ -47,6 +47,6 @@ h1.enviar {
   align-items: center;
 }
 
-#input_inv {
+#input_base64 {
   display: none;
 }
