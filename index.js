@@ -1,51 +1,45 @@
 const express = require("express");
 const path = require("path");
+const { MongoClient, ObjectId } = require("mongodb");
 
-const port = 3333;
-const app = express();
-app.use(express.urlencoded({extended: true}));
+(async () => {
+  const connectionString = "mongodb+srv://admin:sameladmin@samel-cluster.awmdl.mongodb.net/test";
+  const options = { useUnifiedTopology: true };
 
-// Middleware de rendereização do HTML
-app.use(express.static(path.join(__dirname, "public")));
-app.set("views", path.join(__dirname, "public"));
-app.engine("html", require("ejs").renderFile);
-app.set("view engine", "html");
+  console.info("Tentando conectar ao BD ...");
+  const client = await MongoClient.connect(connectionString, options);
+  console.info("Conectado ao BD")
 
-app.get("/", (req, res) => {
-  console.log("GET /");
-  return res.render("home.html");
-});
+  const db = client.db("samel-api");
+  const usuarios = db.collection("users");
 
-app.get("/cadastro", (req, res) => {
-  console.log("GET /cadastro");
-  return res.render("cadastro.html");
-});
+  const port = 3333;
+  const app = express();
+  app.use(express.urlencoded({ extended: true }));
 
-app.post("/cadastro", (req, res) => {
-  console.log("POST /cadastro");
-  const {
-    input_nome,
-    input_telefone,
-    input_cpf,
-    input_email,
-    input_file,
-    input_base64,
-  } = req.body;
+  // Middleware de rendereização do HTML
+  app.use(express.static(path.join(__dirname, "public")));
+  app.set("views", path.join(__dirname, "public"));
+  app.engine("html", require("ejs").renderFile);
+  app.set("view engine", "html");
 
-  const sendToDB = {
-    nome: input_nome,
-    telefone: input_telefone,
-    cpf: input_cpf,
-    email: input_email,
-    imagem: {
-      nomeOriginal: input_file,
-      base64string: input_base64,
-    },
-  };
+  app.get("/", (req, res) => {
+    console.log("GET /");
+    return res.render("home.html");
+  });
 
-  return res.render("cadastrado.html");
-});
+  app.get("/cadastro", (req, res) => {
+    console.log("GET /cadastro");
+    return res.render("cadastro.html");
+  });
 
-app.listen(port, () => {
-  console.info(`App rodando em: http://localhost:${port}`);
-});
+  app.post("/cadastro", (req, res) => {
+    console.log("POST /cadastro");
+    return res.render("cadastrado.html");
+  });
+
+  app.listen(port, () => {
+    console.info(`App rodando em: http://localhost:${port}`);
+  });
+
+})();
