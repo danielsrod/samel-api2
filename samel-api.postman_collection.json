@@ -1,0 +1,139 @@
+{
+	"info": {
+		"_postman_id": "482726e9-2302-4c1f-ac94-de09e7493610",
+		"name": "samel-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Ver todos os usuarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://samel-api.herokuapp.com/usuarios",
+					"protocol": "https",
+					"host": [
+						"samel-api",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ver usuario pelo id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://samel-api.herokuapp.com/usuarios/6088458c42460634bc4b3149",
+					"protocol": "https",
+					"host": [
+						"samel-api",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"usuarios",
+						"6088458c42460634bc4b3149"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"nome\": \"seu nome\",\r\n \"telefone\": \"seu telefone\",\r\n \"cpf\": \"seu cpf\",\r\n \"email\": \"seu email\",\r\n \"filename\": \"nome do arquivo completo\",\r\n \"base64img\":\"imagem codificada em base64\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://samel-api.herokuapp.com/cadastro",
+					"protocol": "https",
+					"host": [
+						"samel-api",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"cadastro"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar usuario pelo id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"nome\": \"nome atualizado\",\r\n \"telefone\": \"telefone atualizado\",\r\n \"cpf\": \"cpf atualizado\",\r\n \"email\": \"email atualizado\",\r\n \"filename\": \"arquivo atualizado\",\r\n \"base64img\": \"base64 atualizada\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://samel-api.herokuapp.com/usuarios/6088458c42460634bc4b3149",
+					"protocol": "https",
+					"host": [
+						"samel-api",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"usuarios",
+						"6088458c42460634bc4b3149"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar usuario pelo id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"nome\": \"nome atualizado\",\r\n \"telefone\": \"telefone atualizado\",\r\n \"cpf\": \"cpf atualizado\",\r\n \"email\": \"email atualizado\",\r\n \"filename\": \"arquivo atualizado\",\r\n \"base64img\": \"base64 atualizada\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://samel-api.herokuapp.com/usuarios/608843cc9ac0511b18474d38",
+					"protocol": "https",
+					"host": [
+						"samel-api",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"usuarios",
+						"608843cc9ac0511b18474d38"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
