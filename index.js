@@ -1,3 +1,4 @@
+// Dependencias
 const express = require("express");
 const path = require("path");
 const { MongoClient, ObjectId } = require("mongodb");
@@ -14,10 +15,13 @@ const { MongoClient, ObjectId } = require("mongodb");
   const usuarios = db.collection("users");
 
   const port = 3333;
+
   const app = express();
+
+  // Middleware de requisições
   app.use(express.urlencoded({ extended: true }));
 
-  // Analisador de JSON
+  // Middleware JSON
   app.use(express.json());
 
   // Middleware de rendereização do HTML
@@ -26,42 +30,32 @@ const { MongoClient, ObjectId } = require("mongodb");
   app.engine("html", require("ejs").renderFile);
   app.set("view engine", "html");
 
-
-  // HOME PAGE - OK
   app.get("/", (req, res) => {
-    console.log("GET /");
     return res.render("home.html");
+
   });
 
-  // LISTAR TODOS USUARIOS - OK
   app.get("/usuarios", async (req, res) => {
-    console.log("GET /usuarios");
-
     allUsers = await usuarios.find().toArray()
-
     return res.json(allUsers);
+
   })
 
-  // Listar 1 por Id - OK
   app.get("/usuarios/:id", async (req, res) => {
-    console.log("GET /usuarios/:id");
     const { id } = req.params;
 
-    const user = await usuarios.findOne( { _id: ObjectId(id) } )
+    const user = await usuarios.findOne({ _id: ObjectId(id) })
 
     return res.json(user);
+
   })
 
-  // Pagina de cadastro - OK
   app.get("/cadastro", (req, res) => {
-    console.log("GET /cadastro");
     return res.render("cadastro.html");
+
   });
 
-  // Pagina de confirmação de cadastro - OK
   app.post("/cadastro", async (req, res) => {
-    console.log("POST /cadastro");
-
     const cadastroUsuario = req.body;
 
     cadastroUsuario.created_at = new Date();
@@ -69,18 +63,35 @@ const { MongoClient, ObjectId } = require("mongodb");
 
     await usuarios.insertOne(cadastroUsuario);
 
-    return res.render("cadastrado.html");
-  });
-  
-
-  // Atualizar usuario - DOING
-  app.put("/usuarios/:id", (req, res) => {
-    console.log("PUT /usuarios");
-    return res.send("Atualizar");
+    return res.send('Usuario cadastrado com sucesso.<br><a href="http://localhost:3333">Home</a>');
   });
 
+  app.put("/usuarios/:id", async (req, res) => {
+    const { id } = req.params;
+    const {
+      nome, telefone, cpf, email, filename, base64img
+    } = req.body;
 
-  // Deletar usuario pelo Id - OK
+    const updateClient = {
+      _id: ObjectId(id),
+      nome,
+      telefone,
+      cpf,
+      email,
+      filename,
+      base64img
+    }
+
+    updateClient.updated_at = new Date();
+
+    await usuarios.updateOne(
+      { _id: ObjectId(id) },
+      { $set: updateClient }
+    );
+
+    return res.send(`Usuario com id ${id} foi atualizado.`);
+  });
+
   app.delete("/usuarios/:id", async (req, res) => {
     const { id } = req.params;
 
@@ -88,11 +99,10 @@ const { MongoClient, ObjectId } = require("mongodb");
       { _id: ObjectId(id) }
     );
 
-    return res.send(`Usuario com id: ${id} deletado.`);
+    return res.send(`Usuario com id: ${id} foi deletado.`);
   });
 
-  // Rota de erro - OK
-  app.all("/**", (req, res) => {
+  app.all("/*", (req, res) => {
     return res.sendStatus(404);
   });
 
