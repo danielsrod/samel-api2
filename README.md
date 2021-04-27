@@ -21,3 +21,6 @@ https://samel-api.herokuapp.com/
 
 Dentro do navegador está disponível a opção de cadastrar usuário, fazendo upload da imagem, para ser salva no banco de dados em base64.
 
+Demais funcionalidade podem ser feitas no postman (update e delete)
+
+Caso queria ver Usuario por ID no navegador, basta pegar o ID do usuario e colocar depois da URL /usuarios/:id
