@@ -12,23 +12,23 @@
 
 <body>
   <div id="app">
-    <h1>Samel API</h1>
+    <h1>Cadastro de Clientes</h1>
     <form action="/cadastro" method="POST">
       <label for="input_nome">Nome: </label><br />
-      <input type="text" name="input_nome" id="input_nome" required /><br />
+      <input type="text" name="nome" id="input_nome" required /><br />
       <label for="input_nome">Telefone: </label><br />
-      <input type="text" name="input_telefone" id="input_telefone" required /><br />
+      <input type="text" name="telefone" id="input_telefone" required /><br />
       <label for="input_nome">CPF: </label><br />
-      <input type="text" name="input_cpf" id="input_cpf" required /><br />
+      <input type="text" name="cpf" id="input_cpf" required /><br />
       <label for="input_nome">E-Mail: </label><br />
-      <input type="text" name="input_email" id="input_email" required /><br />
+      <input type="text" name="email" id="input_email" required /><br />
       <label>Insira sua foto aqui: </label><br />
-      <input type="file" id="input_file" name="input_file" onchange="convBase64()" required /><br />
+      <input type="file" name="file" id="input_file" onchange="convBase64()" required /><br />
       <button type="submit">CADASTRAR</button>
 
       <div id="idImageHolder"></div>
 
-      <input type="text" name="input_base64" id="input_base64" value="salve" />
+      <input type="text" name="base64img" id="input_base64" value="salve" />
 
     </form>
   </div>
