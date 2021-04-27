@@ -12,3 +12,12 @@ body {
   padding: 3px;
   box-shadow: 1px, 1px rgb(92, 92, 92);
 }
+
+li {
+  text-align: left;
+  margin-right: 30px;
+}
+
+ul {
+  display: flex;
+}

@@ -64,6 +64,9 @@ const { MongoClient, ObjectId } = require("mongodb");
 
     const cadastroUsuario = req.body;
 
+    cadastroUsuario.created_at = new Date();
+    cadastroUsuario.updated_at = new Date();
+
     await usuarios.insertOne(cadastroUsuario);
 
     return res.render("cadastrado.html");
