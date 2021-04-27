@@ -63,7 +63,7 @@ const { MongoClient, ObjectId } = require("mongodb");
 
     await usuarios.insertOne(cadastroUsuario);
 
-    return res.send('Usuario cadastrado com sucesso.<br><a href="http://localhost:3333">Home</a>');
+    return res.send('Usuario cadastrado com sucesso.');
   });
 
   app.put("/usuarios/:id", async (req, res) => {
