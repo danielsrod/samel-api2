@@ -14,7 +14,7 @@ const { MongoClient, ObjectId } = require("mongodb");
   const db = client.db("samel-api");
   const usuarios = db.collection("users");
 
-  const port = 3333;
+  const port = process.env.PORT || 3333;
 
   const app = express();
 
