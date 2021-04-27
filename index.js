@@ -63,7 +63,7 @@ const { MongoClient, ObjectId } = require("mongodb");
 
     await usuarios.insertOne(cadastroUsuario);
 
-    return res.send(`<p>Usuario cadastrado com sucesso<p><br><a href="https://samel-api.herokuapp.com/"></a>`);
+    return res.send(`<p>Usuario cadastrado com sucesso<p><br><a href="https://samel-api.herokuapp.com/">Home</a>`);
   });
 
   app.put("/usuarios/:id", async (req, res) => {
