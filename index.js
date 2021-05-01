@@ -35,8 +35,7 @@ const cadastroRoutes = require("./routes/cadastroRoutes");
   app.set("view engine", "html");
 
 
-
-  app.get("/", render, (req, res) => {
+  app.get("/", (req, res) => {
     return res.render("home.html");
 
   });
