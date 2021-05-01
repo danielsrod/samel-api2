@@ -28,16 +28,13 @@ const cadastroRoutes = require("./routes/cadastroRoutes");
   app.use(express.json());
 
   // Middleware de rendereização do HTML
-  const render = (req, res, next) => {
 
-    app.use(express.static(path.join(__dirname, "public")));
-    app.set("views", path.join(__dirname, "public"));
-    app.engine("html", require("ejs").renderFile);
-    app.set("view engine", "html");
+  app.use(express.static(path.join(__dirname, "public")));
+  app.set("views", path.join(__dirname, "public"));
+  app.engine("html", require("ejs").renderFile);
+  app.set("view engine", "html");
 
-    next();
 
-  }
 
   app.get("/", render, (req, res) => {
     return res.render("home.html");

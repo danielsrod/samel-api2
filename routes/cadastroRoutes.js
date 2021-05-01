@@ -2,18 +2,7 @@ const { Router } = require("express");
 
 const router = Router();
 
-const render = (req, res, next) => {
-
-    app.use(express.static(path.join(__dirname, "../public")));
-    app.set("views", path.join(__dirname, "../public"));
-    app.engine("html", require("ejs").renderFile);
-    app.set("view engine", "html");
-
-    next();
-
-}
-
-router.get("/", render, (req, res) => {
+router.get("/", (req, res) => {
     return res.render("cadastro.html");
 });
 
