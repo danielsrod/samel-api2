@@ -3,6 +3,9 @@ const express = require("express");
 const path = require("path");
 const { MongoClient, ObjectId } = require("mongodb");
 
+const usuariosRoutes = require("./routes/usuariosRoutes");
+const cadastroRoutes = require("./routes/cadastroRoutes");
+
 (async () => {
   const connectionString = "mongodb+srv://admin:sameladmin@samel-cluster.awmdl.mongodb.net/test";
   const options = { useUnifiedTopology: true };
@@ -25,82 +28,25 @@ const { MongoClient, ObjectId } = require("mongodb");
   app.use(express.json());
 
   // Middleware de rendereização do HTML
-  app.use(express.static(path.join(__dirname, "public")));
-  app.set("views", path.join(__dirname, "public"));
-  app.engine("html", require("ejs").renderFile);
-  app.set("view engine", "html");
+  const render = (req, res, next) => {
 
-  app.get("/", (req, res) => {
+    app.use(express.static(path.join(__dirname, "public")));
+    app.set("views", path.join(__dirname, "public"));
+    app.engine("html", require("ejs").renderFile);
+    app.set("view engine", "html");
+
+    next();
+
+  }
+
+  app.get("/", render, (req, res) => {
     return res.render("home.html");
 
   });
 
-  app.get("/usuarios", async (req, res) => {
-    allUsers = await usuarios.find().toArray()
-    return res.json(allUsers);
+  app.use('/usuarios', usuariosRoutes);
+  app.use('/cadastro', cadastroRoutes);
 
-  })
-
-  app.get("/usuarios/:id", async (req, res) => {
-    const { id } = req.params;
-
-    const user = await usuarios.findOne({ _id: ObjectId(id) })
-
-    return res.json(user);
-
-  })
-
-  app.get("/cadastro", (req, res) => {
-    return res.render("cadastro.html");
-
-  });
-
-  app.post("/cadastro", async (req, res) => {
-    const cadastroUsuario = req.body;
-
-    cadastroUsuario.created_at = new Date();
-    cadastroUsuario.updated_at = new Date();
-
-    await usuarios.insertOne(cadastroUsuario);
-
-    return res.send(`<p>Usuario cadastrado com sucesso<p><br><a href="https://samel-api.herokuapp.com/">Home</a>`);
-  });
-
-  app.put("/usuarios/:id", async (req, res) => {
-    const { id } = req.params;
-    const {
-      nome, telefone, cpf, email, filename, base64img
-    } = req.body;
-
-    const updateClient = {
-      _id: ObjectId(id),
-      nome,
-      telefone,
-      cpf,
-      email,
-      filename,
-      base64img
-    }
-
-    updateClient.updated_at = new Date();
-
-    await usuarios.updateOne(
-      { _id: ObjectId(id) },
-      { $set: updateClient }
-    );
-
-    return res.send(`Usuario com id ${id} foi atualizado.`);
-  });
-
-  app.delete("/usuarios/:id", async (req, res) => {
-    const { id } = req.params;
-
-    await usuarios.deleteOne(
-      { _id: ObjectId(id) }
-    );
-
-    return res.send(`Usuario com id: ${id} foi deletado.`);
-  });
 
   app.all("/*", (req, res) => {
     return res.sendStatus(404);
