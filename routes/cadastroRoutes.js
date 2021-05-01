@@ -4,8 +4,8 @@ const router = Router();
 
 const render = (req, res, next) => {
 
-    app.use(express.static(path.join(__dirname, "public")));
-    app.set("views", path.join(__dirname, "public"));
+    app.use(express.static(path.join(__dirname, "../public")));
+    app.set("views", path.join(__dirname, "../public"));
     app.engine("html", require("ejs").renderFile);
     app.set("view engine", "html");
 
@@ -15,7 +15,6 @@ const render = (req, res, next) => {
 
 router.get("/", render, (req, res) => {
     return res.render("cadastro.html");
-
 });
 
 router.post("/", async (req, res) => {
