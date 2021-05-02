@@ -3,7 +3,7 @@ const { Router } = require("express");
 const router = Router();
 
 router.get("/", (req, res) => {
-    return res.render("cadastro.html");
+    return res.render("pages/cadastro");
 });
 
 router.post("/", async (req, res) => {

@@ -1,11 +1,11 @@
 function convBase64() {
-    var files = document.getElementById('input_file').files;
+    const files = document.getElementById('input_file').files;
     if(files.length > 0) {
-        var file = files[0];
-        var readerFile = new FileReader()
+        const file = files[0];
+        const readerFile = new FileReader()
         readerFile.onload = loadEvent => {
-            var stringBase64 = loadEvent.target.result;
-            var ImageElemet = document.createElement('img');
+            const stringBase64 = loadEvent.target.result;
+            const ImageElemet = document.createElement('img');
             ImageElemet.src = stringBase64;
             ImageElemet.id = 'base64holder';
             document.getElementById('idImageHolder').innerHTML = ImageElemet.outerHTML;

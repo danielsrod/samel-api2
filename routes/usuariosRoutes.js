@@ -4,7 +4,7 @@ const router = Router();
 
 router.get("/", async (req, res) => {
     allUsers = await usuarios.find().toArray()
-    return res.json(allUsers);
+    return res.send(allUsers);
 
 })
 

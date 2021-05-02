@@ -1,6 +1,7 @@
 // Dependencias
 const express = require("express");
 const path = require("path");
+const cors = require("cors");
 const { MongoClient, ObjectId } = require("mongodb");
 
 const usuariosRoutes = require("./routes/usuariosRoutes");
@@ -24,19 +25,21 @@ const cadastroRoutes = require("./routes/cadastroRoutes");
   // Middleware de requisições
   app.use(express.urlencoded({ extended: true }));
 
+  app.use(cors());
+
   // Middleware JSON
   app.use(express.json());
 
   // Middleware de rendereização do HTML
 
-  app.use(express.static(path.join(__dirname, "public")));
-  app.set("views", path.join(__dirname, "public"));
-  app.engine("html", require("ejs").renderFile);
-  app.set("view engine", "html");
+  // app.use(express.static(path.join(__dirname, "public")));
+  // app.set("views", path.join(__dirname, "public"));
+  // app.engine("html", require("ejs").renderFile);
+  app.set("view engine", "ejs");
 
 
   app.get("/", (req, res) => {
-    return res.render("home.html");
+    return res.render("pages/home");
 
   });
 

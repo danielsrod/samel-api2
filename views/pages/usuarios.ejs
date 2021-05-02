@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="clientes_list">
+
+    </ul>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script>
+        axios.get('https://samel-api.herokuapp.com/usuarios')
+            .then(response => createList(response.data))
+            .catch(error => console.log(error))
+        const createList = allUsers => {
+            const ulClientes = document.getElementById('clientes_list')
+            alunos.map(aluno => {
+                const listaClientes = document.createElement('li')
+                listaClintes.innerHTML = `Nome: ${clientes.nome}`
+                
+            })
+        }
+    </script>
+</body>
+
+</html>
